@@ -23,9 +23,9 @@ jobs:
         # - woody
         # - sarge
         # - etch
-        # - lenny
-        # - squeeze
-        # - wheezy
+        - lenny
+        - squeeze
+        - wheezy
         - jessie
     container: debian/eol:${{ matrix.version }} 
 
