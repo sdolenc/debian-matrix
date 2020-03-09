@@ -25,7 +25,7 @@ jobs:
         # - etch
         # - lenny
         # - squeeze
-        - wheezy
+        # - wheezy
         - jessie
     container: debian/eol:${{ matrix.version }} 
 
