@@ -18,7 +18,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [potato, woody, sarge, etch, lenny, squeeze, wheezy, jessie]
+        version:
+        # - potato
+        # - woody
+        # - sarge
+        # - etch
+        # - lenny
+        # - squeeze
+        # - wheezy
+        - jessie
     container: debian/eol:${{ matrix.version }} 
 
     # Steps represent a sequence of tasks that will be executed as part of the job
