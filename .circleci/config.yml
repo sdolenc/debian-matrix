@@ -1,0 +1,76 @@
+version: 2
+jobs:
+  buster:
+    docker:
+      - image: sdolenc/debian-circleci:buster
+    steps:
+      - checkout
+      - run: echo "success!"
+  stretch:
+    docker:
+      - image: sdolenc/debian-circleci:stretch
+    steps:
+      - checkout
+      - run: echo "success!"
+  jessie:
+    docker:
+      - image: sdolenc/debian-circleci:jessie
+    steps:
+      - checkout
+      - run: echo "success!"
+  wheezy:
+    docker:
+      - image: sdolenc/debian-circleci:wheezy
+    steps:
+      - checkout
+      - run: echo "success!"
+  squeeze:
+    docker:
+      - image: sdolenc/debian-circleci:squeeze
+    steps:
+      - checkout
+      - run: echo "success!"
+  lenny:
+    docker:
+      - image: sdolenc/debian-circleci:lenny
+    steps:
+      - checkout
+      - run: echo "success!"
+  etch:
+    docker:
+      - image: sdolenc/debian-circleci:etch
+    steps:
+      - checkout
+      - run: echo "success!"
+  sarge:
+    docker:
+      - image: sdolenc/debian-circleci:sarge
+    steps:
+      - checkout
+      - run: echo "success!"
+  woody:
+    docker:
+      - image: sdolenc/debian-circleci:woody
+    steps:
+      - checkout
+      - run: echo "success!"
+  potato:
+    docker:
+      - image: sdolenc/debian-circleci:potato
+    steps:
+      - checkout
+      - run: echo "success!"
+workflows:
+  version: 2
+  all:
+    jobs:
+      - buster
+      - stretch
+      - jessie
+      - wheezy
+      - squeeze
+      - lenny
+      - etch
+      - sarge
+      - woody
+      - potato
