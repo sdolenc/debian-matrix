@@ -1,5 +1,5 @@
 # debian-matrix
-run continuous integration across almost every debian release
+run continuous integration across almost every debian release (similar to https://github.com/sdolenc/bash-matrix )
 
 ![CircleCI](https://circleci.com/gh/sdolenc/debian-matrix.svg?style=shield)
 
