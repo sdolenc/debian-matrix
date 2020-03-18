@@ -2,7 +2,7 @@ version: 2
 jobs:
   buster:
     docker:
-      - image: sdolenc/debian-circleci:buster
+      - image: debian:buster-slim
     <<: &commonSteps
       steps:
         - checkout
@@ -12,39 +12,39 @@ jobs:
               bash --version
   stretch:
     docker:
-      - image: sdolenc/debian-circleci:stretch
+      - image: debian:stretch-slim
     <<: *commonSteps
   jessie:
     docker:
-      - image: sdolenc/debian-circleci:jessie
+      - image: debian/eol:jessie
     <<: *commonSteps
   wheezy:
     docker:
-      - image: sdolenc/debian-circleci:wheezy
+      - image: debian/eol:wheezy
     <<: *commonSteps
   squeeze:
     docker:
-      - image: sdolenc/debian-circleci:squeeze
+      - image: debian/eol:squeeze
     <<: *commonSteps
   lenny:
     docker:
-      - image: sdolenc/debian-circleci:lenny
+      - image: debian/eol:lenny
     <<: *commonSteps
   etch:
     docker:
-      - image: sdolenc/debian-circleci:etch
+      - image: debian/eol:etch
     <<: *commonSteps
   sarge:
     docker:
-      - image: sdolenc/debian-circleci:sarge
+      - image: debian/eol:sarge
     <<: *commonSteps
   woody:
     docker:
-      - image: sdolenc/debian-circleci:woody
+      - image: debian/eol:woody
     <<: *commonSteps
   potato:
     docker:
-      - image: sdolenc/debian-circleci:potato
+      - image: debian/eol:potato
     <<: *commonSteps
 workflows:
   version: 2
