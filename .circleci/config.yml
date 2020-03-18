@@ -1,3 +1,9 @@
+# please use this however you see fit. feel free to add the following comment to your file
+#
+# from https://github.com/sdolenc/debian-matrix
+# or
+# inspired by https://github.com/sdolenc/debian-matrix
+
 version: 2
 jobs:
   buster:
@@ -7,6 +13,7 @@ jobs:
       steps:
         - checkout
         - run:
+             # shell is only needed for bash 2.0*. this line can be removed if you're testing 3.0+
             shell: /bin/sh -e
             command: |
               bash --version
