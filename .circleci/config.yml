@@ -4,17 +4,20 @@
 # or
 # inspired by github.com/sdolenc/debian-matrix
 
-version: 2.1
+version: 2.0
 jobs:
   download-bats-core:
+    environment:
+      - bash_unit_test: "https://github.com/bats-core/bats-core"
+      - commit: "87b16eb"
     docker:
       - image: curlimages/curl
+    working_directory: /tmp
     steps:
       - run:
             command: |
-              cd /tmp
-              curl -L https://github.com/bats-core/bats-core/tarball/87b16eb | tar xz
-              mv bats-core-bats-core-87b16eb bats-core
+              curl -L "${bash_unit_test}/tarball/${commit}" | tar xz
+              mv "bats-core-bats-core-${commit}" bats-core
       - persist_to_workspace:
           root: /tmp
           paths:
@@ -31,8 +34,8 @@ jobs:
             command: |
               set -x
               bash --version
-              df --help
               df --version
+              df --help
               bash /tmp/bats-core/install.sh /usr/local
               command -v bats
   stretch:
