@@ -15,7 +15,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - project/bats-core-bats-core-87b16eb
+            - project/bats-core-bats-core-87b16eb/*
   buster:
     docker:
       - image: debian:buster-slim
