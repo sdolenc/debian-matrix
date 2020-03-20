@@ -9,13 +9,17 @@ jobs:
   download-bats-core:
     docker:
       - image: curlimages/curl
+    working_directory: /tmp
     steps:
       - run:
-            command: curl -L https://github.com/bats-core/bats-core/tarball/87b16eb | tar xz
+            command: |
+              mkdir -p bats-core
+              cd bats-core
+              curl -L https://github.com/bats-core/bats-core/tarball/87b16eb | tar xz
       - persist_to_workspace:
-          root: ~/
+          root: bats-core
           paths:
-            - project/bats-core-bats-core-87b16eb/*
+            - bats-core-bats-core-87b16eb/*
   buster:
     docker:
       - image: debian:buster-slim
@@ -33,7 +37,7 @@ jobs:
               df --version
               ls /tmp/
               ls /tmp/bats-core
-              bash "/tmp/bats-core/install.sh" /usr/local
+              bash "/tmp/bats-core/bats-core-bats-core-87b16eb/install.sh" /usr/local
               command -v bats
   stretch:
     docker:
