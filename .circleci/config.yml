@@ -9,17 +9,16 @@ jobs:
   download-bats-core:
     docker:
       - image: curlimages/curl
-    working_directory: /tmp
     steps:
       - run:
             command: |
-              mkdir -p bats-core
-              cd bats-core
+              mkdir -p /tmp/bats-core
+              cd /tmp/bats-core
               curl -L https://github.com/bats-core/bats-core/tarball/87b16eb | tar xz
       - persist_to_workspace:
-          root: bats-core
+          root: /tmp/bats-core
           paths:
-            - bats-core-bats-core-87b16eb/*
+            - bats-core-bats-core-87b16eb
   buster:
     docker:
       - image: debian:buster-slim
@@ -27,7 +26,6 @@ jobs:
       steps:
         - checkout
         - attach_workspace:
-            # Must be absolute path or relative path from working_directory
             at: /tmp/bats-core
         - run:
             command: |
