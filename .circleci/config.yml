@@ -13,9 +13,9 @@ jobs:
       - run:
             command: curl -L https://github.com/bats-core/bats-core/tarball/87b16eb | tar xz
       - persist_to_workspace:
-          root: ~/project/
+          root: ~/
           paths:
-            - bats-core-bats-core-87b16eb
+            - project/bats-core-bats-core-87b16eb
   buster:
     docker:
       - image: debian:buster-slim
