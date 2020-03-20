@@ -4,21 +4,35 @@
 # or
 # inspired by github.com/sdolenc/debian-matrix
 
-version: 2
+version: 2.1
 jobs:
+  download-bats-core:
+    docker:
+      - image: curlimages/curl
+    steps:
+      - run:
+          command: curl -L https://github.com/bats-core/bats-core/tarball/87b16eb | tar xz
+      - persist_to_workspace:
+          root: bats-core-bats-core-87b16eb
+          paths:
+            - *
   buster:
     docker:
       - image: debian:buster-slim
     <<: &commonSteps
       steps:
         - checkout
+        - attach_workspace:
+            # Must be absolute path or relative path from working_directory
+            at: /tmp/bats-core
         - run:
-            # bash 2.0 doesn't support set -o pipefail so we remove it by specifying the shell
-            # this line can be removed if you're only testing bash 3.0 or above
-            shell: /bin/bash -e
-
             command: |
+              set -x
               bash --version
+              df --help
+              df --version
+              bash "/tmp/bats-core/install.sh" /usr/local
+              command -v bats
   stretch:
     docker:
       - image: debian:stretch-slim
@@ -39,33 +53,25 @@ jobs:
     docker:
       - image: debian/eol:lenny
     <<: *commonSteps
-  etch:
-    docker:
-      - image: debian/eol:etch
-    <<: *commonSteps
-  sarge:
-    docker:
-      - image: debian/eol:sarge
-    <<: *commonSteps
-  woody:
-    docker:
-      - image: debian/eol:woody
-    <<: *commonSteps
-  potato:
-    docker:
-      - image: debian/eol:potato
-    <<: *commonSteps
 workflows:
   version: 2
   all:
     jobs:
       - buster
+          requires:
+            - download-bats-core
       - stretch
+          requires:
+            - download-bats-core
       - jessie
+          requires:
+            - download-bats-core
       - wheezy
+          requires:
+            - download-bats-core
       - squeeze
+          requires:
+            - download-bats-core
       - lenny
-      - etch
-      - sarge
-      - woody
-      - potato
+          requires:
+            - download-bats-core
