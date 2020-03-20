@@ -12,13 +12,13 @@ jobs:
     steps:
       - run:
             command: |
-              mkdir -p /tmp/bats-core
-              cd /tmp/bats-core
+              cd /tmp
               curl -L https://github.com/bats-core/bats-core/tarball/87b16eb | tar xz
+              mv bats-core-bats-core-87b16eb bats-core
       - persist_to_workspace:
-          root: /tmp/bats-core
+          root: /tmp
           paths:
-            - bats-core-bats-core-87b16eb
+            - bats-core
   buster:
     docker:
       - image: sdolenc/debian-circleci:buster
@@ -26,16 +26,14 @@ jobs:
       steps:
         - checkout
         - attach_workspace:
-            at: /tmp/bats-core
+            at: /tmp
         - run:
             command: |
               set -x
               bash --version
               df --help
               df --version
-              ls /tmp/
-              ls /tmp/bats-core
-              bash "/tmp/bats-core/bats-core-bats-core-87b16eb/install.sh" /usr/local
+              bash /tmp/bats-core/install.sh /usr/local
               command -v bats
   stretch:
     docker:
