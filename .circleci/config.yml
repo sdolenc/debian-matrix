@@ -11,17 +11,9 @@ jobs:
       - image: curlimages/curl
     steps:
       - run:
-            command: |
-              set -x
-              curl -L https://github.com/bats-core/bats-core/tarball/87b16eb | tar xz
-              pwd
-              ls
-              pushd ~
-              pwd
-              ls
-              popd
+            command: curl -L https://github.com/bats-core/bats-core/tarball/87b16eb | tar xz
       - persist_to_workspace:
-          root: ~/
+          root: ~/project/
           paths:
             - bats-core-bats-core-87b16eb
   buster:
