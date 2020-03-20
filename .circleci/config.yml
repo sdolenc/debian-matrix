@@ -57,21 +57,22 @@ workflows:
   version: 2
   all:
     jobs:
-      - buster
+      - download-bats-core
+      - buster:
           requires:
             - download-bats-core
-      - stretch
+      - stretch:
           requires:
             - download-bats-core
-      - jessie
+      - jessie:
           requires:
             - download-bats-core
-      - wheezy
+      - wheezy:
           requires:
             - download-bats-core
-      - squeeze
+      - squeeze:
           requires:
             - download-bats-core
-      - lenny
+      - lenny:
           requires:
             - download-bats-core
