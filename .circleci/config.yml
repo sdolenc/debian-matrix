@@ -21,7 +21,7 @@ jobs:
             - bats-core-bats-core-87b16eb
   buster:
     docker:
-      - image: debian:buster-slim
+      - image: sdolenc/debian-circleci:buster
     <<: &commonSteps
       steps:
         - checkout
@@ -39,23 +39,23 @@ jobs:
               command -v bats
   stretch:
     docker:
-      - image: debian:stretch-slim
+      - image: sdolenc/debian-circleci:stretch
     <<: *commonSteps
   jessie:
     docker:
-      - image: debian/eol:jessie
+      - image: sdolenc/debian-circleci:jessie
     <<: *commonSteps
   wheezy:
     docker:
-      - image: debian/eol:wheezy
+      - image: sdolenc/debian-circleci:wheezy
     <<: *commonSteps
   squeeze:
     docker:
-      - image: debian/eol:squeeze
+      - image: sdolenc/debian-circleci:squeeze
     <<: *commonSteps
   lenny:
     docker:
-      - image: debian/eol:lenny
+      - image: sdolenc/debian-circleci:lenny
     <<: *commonSteps
 workflows:
   version: 2
